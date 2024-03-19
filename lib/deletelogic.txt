@@ -1,0 +1,431 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Task Manager',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: TaskListScreen(),
+    );
+  }
+}
+
+class Task {
+  final String id;
+  String name;
+  Color priority;
+  int timeTaken; // in minutes
+
+  Task({
+    required this.id,
+    required this.name,
+    required this.priority,
+    required this.timeTaken,
+  });
+}
+
+class TaskListScreen extends StatefulWidget {
+  @override
+  _TaskListScreenState createState() => _TaskListScreenState();
+}
+
+class _TaskListScreenState extends State<TaskListScreen> {
+  late mongo.Db _db;
+  List<Task> _tasks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _connectToDatabase();
+  }
+
+  Future<void> _connectToDatabase() async {
+    try {
+      String connectionString =
+          "mongodb+srv://legolasbhatia123:legolas@cluster0.f1w1qjx.mongodb.net/traffic?retryWrites=true&w=majority";
+      _db = await mongo.Db.create(connectionString);
+      await _db.open();
+      _fetchTasks();
+    } catch (e) {
+      print('Error connecting to database: $e');
+    }
+  }
+
+  Future<void> _fetchTasks() async {
+    try {
+      final collection = _db.collection('work_list');
+      final tasks = await collection.find().toList();
+      setState(() {
+        _tasks = tasks.map((task) {
+          return Task(
+            id: task['_id'].toString(),
+            name: task['name'] as String,
+            priority: _getPriorityColor(task['priority'] as String),
+            timeTaken: task['timeTaken'] as int,
+          );
+        }).toList();
+      });
+    } catch (e) {
+      print('Error fetching tasks: $e');
+    }
+  }
+
+  Color _getPriorityColor(String priority) {
+    switch (priority) {
+      case 'High':
+        return Colors.red;
+      case 'Medium':
+        return Colors.yellow;
+      case 'Low':
+      default:
+        return Colors.green;
+    }
+  }
+
+  Future<void> _deleteTask(String name) async {
+     String connectionString =
+          "mongodb+srv://legolasbhatia123:legolas@cluster0.f1w1qjx.mongodb.net/traffic?retryWrites=true&w=majority";
+      _db = await mongo.Db.create(connectionString);
+      await _db.open();
+    try {
+      final collection = _db.collection('work_list');
+      await collection.remove(mongo.where.eq('name', (name)));
+      _fetchTasks();
+    } catch (e) {
+      print('Error deleting task: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context)  {
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Task Manager'),
+      ),
+      body: ListView.builder(
+        itemCount: _tasks.length,
+        itemBuilder: (context, index) {
+          return Dismissible(
+            key: Key(_tasks[index].id),
+            direction: DismissDirection.horizontal,
+            background: Container(
+              color: Colors.green,
+              alignment: Alignment.centerLeft,
+              child: Icon(Icons.edit),
+            ),
+            secondaryBackground: Container(
+              color: Colors.red,
+              alignment: Alignment.centerRight,
+              child: Icon(Icons.delete),
+            ),
+            confirmDismiss: (direction) async {
+              if (direction == DismissDirection.endToStart) {
+                // Swipe right (delete)
+                await _deleteTask(_tasks[index].name);
+                return true;
+              } else {
+                // Swipe left (edit)
+                // Navigate to edit screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        EditTaskScreen(task: _tasks[index]),
+                  ),
+                );
+                return false;
+              }
+            },
+            child: TaskCard(task: _tasks[index]),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigate to add task screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddTaskScreen(),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class TaskCard extends StatelessWidget {
+  
+  final Task task;
+
+  TaskCard({required this.task});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text(task.name),
+        subtitle: Text('Time Taken: ${task.timeTaken} minutes'),
+        tileColor: task.priority,
+      ),
+    );
+  }
+}
+
+class AddTaskScreen extends StatefulWidget {
+  @override
+  _AddTaskScreenState createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  late String _taskName;
+  late Color _priority;
+  late int _timeTaken;
+
+  @override
+  void initState() {
+    super.initState();
+    _taskName = '';
+    _priority = Colors.green;
+    _timeTaken = 0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Add Task'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              onChanged: (value) {
+                setState(() {
+                  _taskName = value;
+                });
+              },
+              decoration: InputDecoration(labelText: 'Task Name'),
+            ),
+            SizedBox(height: 20),
+            const Text('Select Priority:'),
+            DropdownButton<Color>(
+              value: _priority, // Default priority
+              onChanged: (Color? value) {
+                setState(() {
+                  _priority = value!;
+                });
+              },
+              items: <Color>[
+                Colors.green,
+                Colors.yellow,
+                Colors.red,
+              ].map<DropdownMenuItem<Color>>((Color value) {
+                String priorityText;
+                switch (value) {
+                  case Colors.red:
+                    priorityText = 'High';
+                    break;
+                  case Colors.yellow:
+                    priorityText = 'Medium';
+                    break;
+                  case Colors.green:
+                  default:
+                    priorityText = 'Low';
+                    break;
+                }
+                return DropdownMenuItem<Color>(
+                  value: value,
+                  child: Text(priorityText),
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 20),
+            Text('Select Time Taken (minutes):'),
+            TextField(
+              onChanged: (value) {
+                setState(() {
+                  _timeTaken = int.parse(value);
+                });
+              },
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Time Taken'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                late mongo.Db _db;
+String connectionString =
+          "mongodb+srv://legolasbhatia123:legolas@cluster0.f1w1qjx.mongodb.net/traffic?retryWrites=true&w=majority";
+      _db = await mongo.Db.create(connectionString);
+      await _db.open();
+                final newTask = Task(
+                  id: '-1',
+                  name: _taskName,
+                  priority: _priority,
+                  timeTaken: _timeTaken,
+                );
+                // Save task to database
+                try {
+                   
+                  final collection =await _db.collection('work_list');
+                  await collection.insertOne({
+                    'name': newTask.name,
+                    'priority': _priority.toString(),
+                    'timeTaken': _timeTaken,
+                  });
+                  // Refresh task list
+                  Navigator.pop(context);
+                } catch (e) {
+                  print('Error adding task: $e');
+                }
+              },
+              child: Text('Add Task'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EditTaskScreen extends StatefulWidget {
+  final Task task;
+  // final Object id;
+
+  EditTaskScreen({required this.task});
+
+  @override
+  _EditTaskScreenState createState() => _EditTaskScreenState();
+}
+
+class _EditTaskScreenState extends State<EditTaskScreen> {
+  late String _taskName;
+  late Color _priority;
+  late int _timeTaken;
+  
+
+  @override
+  void initState() {
+    super.initState();
+    _taskName = widget.task.name;
+    _priority = widget.task.priority;
+    _timeTaken = widget.task.timeTaken;
+    
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Task'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              onChanged: (value) {
+                setState(() {
+                  _taskName = value;
+                });
+              },
+              decoration: InputDecoration(labelText: 'Task Name'),
+              controller: TextEditingController(text: _taskName),
+            ),
+            SizedBox(height: 20),
+            const Text('Select Priority:'),
+            DropdownButton<Color>(
+              value: _priority, // Default priority
+              onChanged: (Color? value) {
+                setState(() {
+                  _priority = value!;
+                });
+              },
+              items: <Color>[
+                Colors.green,
+                Colors.yellow,
+                Colors.red,
+              ].map<DropdownMenuItem<Color>>((Color value) {
+                String priorityText;
+                switch (value) {
+                  case Colors.red:
+                    priorityText = 'High';
+                    break;
+                  case Colors.yellow:
+                    priorityText = 'Medium';
+                    break;
+                  case Colors.green:
+                  default:
+                    priorityText = 'Low';
+                    break;
+                }
+                return DropdownMenuItem<Color>(
+                  value: value,
+                  child: Text(priorityText),
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 20),
+            Text('Select Time Taken (minutes):'),
+            TextField(
+              onChanged: (value) {
+                setState(() {
+                  _timeTaken = int.parse(value);
+                });
+              },
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Time Taken'),
+              controller: TextEditingController(text: _timeTaken.toString()),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                late mongo.Db _db;
+String connectionString =
+          "mongodb+srv://legolasbhatia123:legolas@cluster0.f1w1qjx.mongodb.net/traffic?retryWrites=true&w=majority";
+      _db = await mongo.Db.create(connectionString);
+      await _db.open();
+                // Update task in database
+                try {
+                  final collection = await  _db.collection('work_list');
+                  await collection.update(
+                    mongo.where.eq('_id', mongo.ObjectId()),
+                    {
+                      r'$set': {
+                        'name': _taskName,
+                        'priority': _priority.toString(),
+                        'timeTaken': _timeTaken,
+                      }
+                    },
+                  );
+                  // Refresh task list
+                  Navigator.pop(context);
+                } catch (e) {
+                  print('Error updating task: $e');
+                }
+              },
+              child: Text('Update Task'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

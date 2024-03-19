@@ -1,0 +1,6 @@
+ String connectionString = "mongodb+srv://legolasbhatia123:legolas@cluster0.f1w1qjx.mongodb.net/traffic?retryWrites=true&w=majority";
+        print(connectionString);
+        // Connect to database:
+        mongo.Db db = await mongo.Db.create(connectionString);
+        await db.open();
+        print(db);
