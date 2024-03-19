@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'package:flutter/services.dart';
+import 'components/header.dart';
+import 'pages/home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'dart:io';
@@ -17,8 +21,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        
       ),
-      home: TaskListScreen(),
+      // home: TaskListScreen(),
+      home: HomePage(),
     );
   }
 }
@@ -56,6 +62,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     _departureTime = DateTime(2024, 3, 19, 9, 5); // Example departure time
     _connectToDatabase();
   }
