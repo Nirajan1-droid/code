@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'components/header.dart';
 import 'pages/home.dart';
+import 'pages/traffic.dart';
+import 'pages/map_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
@@ -24,7 +26,9 @@ class MyApp extends StatelessWidget {
         
       ),
       // home: TaskListScreen(),
-      home: HomePage(),
+      // home: HomePage(),
+      // home: MapPage(),
+      home: TrafficPage(),
     );
   }
 }

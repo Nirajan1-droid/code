@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../components/header.dart';
-import '../components/schedule_list.dart';
+import '../components/map.dart';
 import '../components/footer.dart';
 
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MapPage extends StatelessWidget {
+  const MapPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             right: 0,
             bottom: 0,
             // child: _buildBody(context), // Body content below Header
-            child: Schedule(), // Body content below Header
+            child: MapComponent(), // Body content below Header
           ),
         ],
       ), // Use Body component for main content
