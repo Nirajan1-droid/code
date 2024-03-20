@@ -81,6 +81,10 @@ flutter:
       - assets/icons/right-dot-arrow.png
       - assets/icons/left-dot-arrow.png
       - assets/icons/round-dot-arrow.png
+      - assets/icons/traffic-logo.png
+      - assets/icons/bike.png
+      - assets/icons/car.png
+      - assets/icons/bus.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
