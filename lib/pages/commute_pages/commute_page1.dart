@@ -37,8 +37,9 @@ class _CommutePage1State extends State<CommutePage1> {
             key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
-                Image.asset('assets/icons/traffic-logo.png', width: 150, height: 150,fit: BoxFit.cover), // Replace 'logo.png' with your logo path
+                Image.asset('assets/icons/traffic-logo.png', width: 150, height: 150,fit: BoxFit.contain), // Replace 'logo.png' with your logo path
                 // SizedBox(height: 10),
                 TextFormField(
                   decoration: InputDecoration(
