@@ -85,6 +85,8 @@ flutter:
       - assets/icons/bike.png
       - assets/icons/car.png
       - assets/icons/bus.png
+      - assets/icons/loop.png
+      - assets/icons/loop-rect.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

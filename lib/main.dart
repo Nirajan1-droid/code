@@ -7,6 +7,7 @@ import 'pages/map_page.dart';
 import 'pages/settings.dart';
 import 'pages/signup_page.dart';
 import 'pages/login_page.dart';
+import 'pages/commute_pages/commute_page1.dart';
 
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
@@ -32,9 +33,10 @@ class MyApp extends StatelessWidget {
       // home: HomePage(),
       // home: MapPage(),
       // home: TrafficPage(),
-      home: SettingsPage(),
+      // home: SettingsPage(),
       // home: LoginPage(),
       // home: SignUpPage(),
+      home: CommutePage1(),
     );
   }
 }
