@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
             child: ListView.separated(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 5,
+        itemCount: 6,
         separatorBuilder: (context, index) => const Divider(color: Colors.grey),
         itemBuilder: (context, index) {
           return 
@@ -33,7 +33,8 @@ class SettingsPage extends StatelessWidget {
                         index == 1 ? 'assets/icons/settings-colored.png' :
                         index == 2 ? 'assets/icons/settings-colored.png' :
                         index == 3 ? 'assets/icons/settings-colored.png' :
-                        index == 4 ? 'assets/icons/settings-colored.png' : "",
+                        index == 4 ? 'assets/icons/settings-colored.png' :
+                        index == 5 ? 'assets/icons/settings-colored.png' : "",
                         width: 24.0,
                         height: 24.0,
                       ),
@@ -42,7 +43,8 @@ class SettingsPage extends StatelessWidget {
                         index == 1 ? 'Add Commute' : 
                         index == 2 ? 'Edit Commute' : 
                         index == 3 ? 'Log In' : 
-                        index == 4 ? 'Sign Up' : ""
+                        index == 4 ? 'Sign Up' :
+                        index == 5 ? 'Log Out' : ""
                       ),
                     )
             );

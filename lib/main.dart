@@ -33,10 +33,10 @@ class MyApp extends StatelessWidget {
       // home: HomePage(),
       // home: MapPage(),
       // home: TrafficPage(),
-      // home: SettingsPage(),
+      home: SettingsPage(),
       // home: LoginPage(),
       // home: SignUpPage(),
-      home: CommutePage1(),
+      // home: CommutePage1(),
     );
   }
 }
