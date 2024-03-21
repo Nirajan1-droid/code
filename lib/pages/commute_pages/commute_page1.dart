@@ -29,18 +29,21 @@ class _CommutePage1State extends State<CommutePage1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 50, 
         title: Text('Commute'),
       ),
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.all(10.0),
         child: SingleChildScrollView( // Allow content to scroll if overflowing
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset('assets/icons/traffic-logo.png', width: 150, height: 150,fit: BoxFit.contain), // Replace 'logo.png' with your logo path
-                // SizedBox(height: 10),
+              Padding(
+                    padding: EdgeInsets.zero,
+                    child: Image.asset('assets/icons/traffic-logo.png', width: 150, height: 100, fit: BoxFit.cover),
+                  ),                // SizedBox(height: 10),
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: 'Home',
@@ -54,9 +57,9 @@ class _CommutePage1State extends State<CommutePage1> {
                   validator: (value) => (value!.isEmpty) ? 'Please enter a value' : null,
                   onSaved: (value) => _from = value!,
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 80),
                 Image.asset('assets/icons/loop.png', color: Colors.green.shade300, width: 40), 
-                SizedBox(height: 50),
+                SizedBox(height: 80),
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: 'Destination',
