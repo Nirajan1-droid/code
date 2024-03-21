@@ -53,9 +53,9 @@ class _CommutePage1State extends State<CommutePage1> {
                   validator: (value) => (value!.isEmpty) ? 'Please enter a value' : null,
                   onSaved: (value) => _from = value!,
                 ),
-                SizedBox(height: 100),
+                SizedBox(height: 50),
                 Image.asset('assets/icons/loop.png', color: Colors.green.shade300, width: 40), 
-                SizedBox(height: 10),
+                SizedBox(height: 50),
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: 'Destination',
