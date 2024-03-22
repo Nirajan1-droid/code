@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskes/main.dart';
+import 'package:taskes/pages/commute_pages/commute_page1.dart';
 import 'package:taskes/pages/login_page.dart';
 import 'package:taskes/pages/signup_page.dart';
 import '../components/header.dart';
@@ -72,7 +73,10 @@ void handleSettings(BuildContext context, int index)
   }
   if(index == 1)
   {
-
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CommutePage1()),
+    );
   }
   if(index == 2)
   {

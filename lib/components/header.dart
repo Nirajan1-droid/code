@@ -62,8 +62,13 @@ class Header extends StatelessWidget {
                     width: 200, // Set the width of the horizontal line
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: Colors.green, // Set the color of the line
+                        // color: Colors.green, // Set the color of the line
                         borderRadius: BorderRadius.circular(10.0),
+                        gradient: LinearGradient(
+                        colors: [Colors.green, Colors.red, Colors.yellow], // Your desired colors
+                        begin: Alignment.topLeft, // Start point of the gradient
+                        end: Alignment.bottomRight, // End point of the gradient
+                      ),
                       ),
                     ),
                   ),
