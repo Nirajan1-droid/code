@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'commute_page3.dart';
+String departuretime_dynamic = '';
 
 class CommutePage2 extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _CommutePage2State extends State<CommutePage2> {
   bool _satSelected = false;
   bool _sunSelected = false;
   String _field1 = "";
+  
   String _field2 = "";
   String _field3 = "";
   String _field4 = "";
@@ -104,6 +106,7 @@ class _CommutePage2State extends State<CommutePage2> {
                         onTimeSelected: (String selectedTime) {
                           // Handle the selected time here
                           _field1 = selectedTime;
+                          departuretime_dynamic = selectedTime;
                           print('Selected Time: $selectedTime');
                         },
                       ),
@@ -391,9 +394,13 @@ class _TimeInputFieldState extends State<TimeInputField> {
   Widget build(BuildContext context) {
     return InkWell( // Use InkWell for tap functionality
       onTap: () async {
+        
         final TimeOfDay? selectedTime = await showTimePicker(
           context: context,
           initialTime: TimeOfDay.now(),
+    
+
+          
         );
         if (selectedTime != null) {
           setState(() {

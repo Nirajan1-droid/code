@@ -1,45 +1,75 @@
 import 'package:flutter/material.dart';
-import '../components/header.dart';
-import '../components/footer.dart';
-import '../components/traffic_chart.dart';
-import '../components/traffic_buttons.dart'; // Import your floating component
+import 'package:taskes/kaamkocodes/5dartkocopy.dart';
+import 'package:taskes/kaamkocodes/5dartkothirdgraph.dart';
+import 'package:taskes/kaamkocodes/5file.dart';
 
-class TrafficPage extends StatelessWidget {
+class TrafficPage extends StatefulWidget {
   const TrafficPage({Key? key}) : super(key: key);
 
-  void _onSubComponentTap(String text) {
-    // Handle 'For Departure' or 'For Return' button click
-    print("Tapped on: $text");
-  }
+  @override
+  _TrafficPageState createState() => _TrafficPageState();
+}
+
+class _TrafficPageState extends State<TrafficPage> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      appBar: AppBar(
+        title: Text('Traffic Page'),
+      ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (int page) {
+          setState(() {
+            _currentPage = page;
+          });
+        },
         children: [
-          Header(), // Position Header on top
-          Positioned(
-            top: 10.0, // Adjust top based on Header height
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Stack( // Wrap content in another Stack
-              children: [
-                TrafficChart(), // Body content below Header
-                Positioned( // Position floating component at bottom
-                  bottom: 10.0, // Adjust bottom position
-                  left: 0,
-                  right: 0,
-                  child: TrafficButtons(
-                    onTap: (text) => _onSubComponentTap(text), // Call function on left tap
-                  ),
-                ),
-              ],
-            ),
+           ChartToggleWidget(),
+                          ChartToggleWidget_second(),
+                          ChartToggleWidget_third(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentPage,
+        onTap: (int page) {
+          _pageController.jumpToPage(page);
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Page 1',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Page 2',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Page 3',
           ),
         ],
       ),
-      bottomNavigationBar: Footer(sectionIndex: 1), // Use Footer component for the bottom bar
     );
   }
 }
+
+class PageContent extends StatelessWidget {
+  final int pageNumber;
+
+  const PageContent({required this.pageNumber, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'Page $pageNumber',
+        style: TextStyle(fontSize: 24.0),
+      ),
+    );
+  }
+}
+ 

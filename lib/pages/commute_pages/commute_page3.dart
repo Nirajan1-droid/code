@@ -1,4 +1,9 @@
+ 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:taskes/kaamkocodes/19main.dart';
+import 'package:taskes/pages/map_page.dart';
 
 class CommutePage3 extends StatefulWidget {
   @override
@@ -113,7 +118,7 @@ class _CommutePage3State extends State<CommutePage3> {
               ),
             ),
             ElevatedButton(
-              onPressed: () => handleNext(),
+              onPressed: () =>  handleNext(context),
               child: Text('Next'),
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(MediaQuery.of(context).size.width * 0.46, 50),
@@ -208,8 +213,13 @@ void handleSkip()
 {
   print("Skipped");
 }
-
-void handleNext()
-{
-  print("Next");
-}
+bool analyzed_vayo_traffic_page_dekha = analyzedstatus;
+ void handleNext(BuildContext context) async {
+  
+      // Run the function every 5 seconds
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MapPage()), // Navigate to PolylineMap page
+      );
+    
+  }

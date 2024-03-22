@@ -1,47 +1,24 @@
 import 'dart:async';
-import 'package:flutter/services.dart';
-import 'components/header.dart';
-import 'pages/home.dart';
-import 'pages/traffic.dart';
-import 'pages/map_page.dart';
-import 'pages/settings.dart';
-import 'pages/signup_page.dart';
-import 'pages/login_page.dart';
-import 'pages/commute_pages/commute_page1.dart';
-
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
-List<double> source11 = dynamic_source_ko_coordinate1;
-List<double> destination11=  dynamic_destination_ko_coordinate1;
 // void main() {
-
-//   runApp(MyAppmainpage());
+//   runApp(TaskManager());
 // }
-// ***************** Set loggedIn status from database *****************
-bool isLoggedIn = true;
-bool IsRegistered = true;
 
-class MyAppmainpage extends StatelessWidget {
+class TaskManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Task Manager',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,        
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: TaskListScreen(),
-      home: true ? HomePage() : LoginPage(),
-      // home: MapPage(),
-      // home: TrafficPage(),
-      // home: SettingsPage(),
-      // home: LoginPage(),
-      // home: SignUpPage(),
-      // home: CommutePage1(),
+      home: TaskListScreen(),
     );
   }
 }
@@ -79,7 +56,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     _departureTime = DateTime(2024, 3, 19, 9, 5); // Example departure time
     _connectToDatabase();
   }
