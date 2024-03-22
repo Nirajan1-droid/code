@@ -23,7 +23,7 @@ class MapPage extends StatelessWidget {
           ),
         ],
       ), // Use Body component for main content
-      bottomNavigationBar: Footer(), // Use Footer component for the bottom bar
+      bottomNavigationBar: Footer(sectionIndex: 2), // Use Footer component for the bottom bar
     );
   }
 }

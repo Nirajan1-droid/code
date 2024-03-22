@@ -39,7 +39,7 @@ class TrafficPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Footer(), // Use Footer component for the bottom bar
+      bottomNavigationBar: Footer(sectionIndex: 1), // Use Footer component for the bottom bar
     );
   }
 }

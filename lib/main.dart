@@ -15,6 +15,7 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
+
 void main() {
   runApp(MyApp());
 }
@@ -26,17 +27,16 @@ class MyApp extends StatelessWidget {
       title: 'Task Manager',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        
+        visualDensity: VisualDensity.adaptivePlatformDensity,        
       ),
       // home: TaskListScreen(),
-      // home: HomePage(),
+      home: HomePage(),
       // home: MapPage(),
       // home: TrafficPage(),
       // home: SettingsPage(),
       // home: LoginPage(),
       // home: SignUpPage(),
-      home: CommutePage1(),
+      // home: CommutePage1(),
     );
   }
 }

@@ -1,20 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:taskes/pages/home.dart';
+import 'package:taskes/pages/traffic.dart';
+import 'package:taskes/pages/map_page.dart';
+import 'package:taskes/pages/settings.dart';
 
 class Footer extends StatefulWidget {
+  final int sectionIndex; // Added parameter for the starting index
+  const Footer({Key? key, required this.sectionIndex}) : super(key: key);
   @override
   _FooterState createState() => _FooterState();
 }
 
 class _FooterState extends State<Footer> {
   final int sectionsNum = 4;
+  late int _selectedIndex;
 
-  int _selectedIndex = 1; // No selection by default
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.sectionIndex; // Initialize _selectedIndex with the sectionIndex parameter
+  }
 
   void _onItemSelected(int index) {
     setState(() {
       _selectedIndex = index;
     });
     print('Selected item: $index'); // Replace with your desired action
+    if(index == 0) 
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    }
+    if(index == 1) 
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => TrafficPage()),
+      );
+    }
+    if(index == 2) 
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MapPage()),
+      );
+    }
+    if(index == 3) 
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SettingsPage()),
+      );
+    }
   }
 
   @override
