@@ -21,6 +21,7 @@ void main() {
 }
 // ***************** Set loggedIn status from database *****************
 bool isLoggedIn = false;
+bool IsRegistered = true;
 
 class MyApp extends StatelessWidget {
   @override

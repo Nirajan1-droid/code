@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:taskes/main.dart';
+import 'package:taskes/pages/home.dart';
 import 'package:taskes/pages/signup_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -73,7 +75,13 @@ class LoginPage extends StatelessWidget {
               // Login button
               ElevatedButton(
                 onPressed: () {
-                  // Handle registration logic
+                  if(isLoggedIn)
+                  {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  }
                 },
                 child: const Text('Login'),
                 style: ElevatedButton.styleFrom(

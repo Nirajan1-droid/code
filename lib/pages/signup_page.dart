@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:taskes/pages/login_page.dart';
+import 'package:taskes/main.dart';
+import '../pages/home.dart';
+import '../pages/login_page.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -9,8 +11,10 @@ class SignUpPage extends StatelessWidget {
     // Handle selection changes here (optional)
   }
 
+
   @override
   Widget build(BuildContext context) {
+  // Set this according to database repsonse after form fillup
     return Scaffold(
       body: SingleChildScrollView(
         // Allow scrolling if content overflows
@@ -74,7 +78,14 @@ class SignUpPage extends StatelessWidget {
               // Register button
               ElevatedButton(
                 onPressed: () {
-                  // Handle registration logic
+                  print("Regitration Button");
+                  if(IsRegistered == true)        // Set 'IsRegistered' according to logic
+                  {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  }
                 },
                 child: const Text('Register'),
                 style: ElevatedButton.styleFrom(
