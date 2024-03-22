@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taskes/main.dart';
+import 'package:taskes/pages/login_page.dart';
+import 'package:taskes/pages/signup_page.dart';
 import '../components/header.dart';
 import '../components/map.dart';
 import '../components/footer.dart';
@@ -27,7 +30,7 @@ class SettingsPage extends StatelessWidget {
           return 
           Material( // Wrap with Material
             child: ListTile(
-                      onTap: () => handleSettings(index), // Print message with adjusted index (1-based)
+                      onTap: () => handleSettings(context, index), // Print message with adjusted index (1-based)
                       leading: Image.asset(
                         index == 0 ? 'assets/icons/settings-colored.png' : 
                         index == 1 ? 'assets/icons/settings-colored.png' :
@@ -59,8 +62,42 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-void handleSettings(int index)
+void handleSettings(BuildContext context, int index)
 {
   // Handle Setting Tap according to the index number
   print('Option ${index + 1} tapped');
+  if(index == 0)
+  {
+    
+  }
+  if(index == 1)
+  {
+
+  }
+  if(index == 2)
+  {
+
+  }
+  if(index == 3)
+  {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+  }
+  if(index == 4)
+  {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SignUpPage()),
+      );
+  }
+  if(index == 5)
+  {
+    isLoggedIn = false;
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+  }
 }
