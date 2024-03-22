@@ -86,7 +86,26 @@ class SignUpPage extends StatelessWidget {
                 
               ),
               const SizedBox(height: 10.0), // Gap between input fields
-              Text("Already have an account? Login"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text("Already ? "),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                    );
+                  },
+                  child: Text(
+                    'Log In',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+                ],
+              ),
 
             ],
           ),

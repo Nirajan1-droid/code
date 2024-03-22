@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:taskes/pages/signup_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,13 +18,15 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center, // Center vertically
-            crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
+            crossAxisAlignment:
+                CrossAxisAlignment.center, // Center horizontally
             children: [
               // Logo
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Image(
-                  image: AssetImage('assets/icons/traffic-logo.png'), // Replace with your logo image
+                  image: AssetImage(
+                      'assets/icons/traffic-logo.png'), // Replace with your logo image
                   fit: BoxFit.cover,
                   height: 150,
                   width: 150,
@@ -82,7 +85,26 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10.0), // Gap between input fields
-              Text("Don't have an account? SignUp"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text("Don't have an account? "),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                    );
+                  },
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+                ],
+              ),
             ],
           ),
         ),

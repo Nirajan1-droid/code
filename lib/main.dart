@@ -19,6 +19,8 @@ import 'package:intl/intl.dart';
 void main() {
   runApp(MyApp());
 }
+// ***************** Set loggedIn status from database *****************
+bool isLoggedIn = false;
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,        
       ),
       // home: TaskListScreen(),
-      home: HomePage(),
+      home: isLoggedIn ? HomePage() : LoginPage(),
       // home: MapPage(),
       // home: TrafficPage(),
       // home: SettingsPage(),
