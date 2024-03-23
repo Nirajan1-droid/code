@@ -1,6 +1,6 @@
 # Traffic Commute Assistant
 <div align="center">
-    <img src="assets/icons/pho0.jpg" width="200" alt="Photo 0" style="display:inline-block; margin: 10px;">
+    <img src="assets/icons/gallery.jpg" width="200" alt="Photo 0" style="display:inline-block; margin: 10px;">
     <img src="assets/icons/pho1.jpeg" width="200" alt="Photo 1" style="display:inline-block; margin: 10px;">
     <img src="assets/icons/pho2.jpeg" width="200" alt="Photo 2" style="display:inline-block; margin: 10px;">
     <img src="assets/icons/pho3.jpeg" width="200" alt="Photo 3" style="display:inline-block; margin: 10px;">
