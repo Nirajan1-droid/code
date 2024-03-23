@@ -74,7 +74,7 @@ String convertToIso8601(String timeString) {
 
 void sendDirectionsRequest(List<double> source, List<double> destination, String segment) async {
    String iso8601Time = convertToIso8601(segment);
-String apiKey = 'AIzaSyCP3qu-d2OgoVc7rv8Lq9PVbL-aFICr-Qc'; // Replace with your API key
+String apiKey = 'ROUTE_API_ENABLED_GOOGLE_KEY'; // Replace with your API key
   String apiUrl = 'https://routes.googleapis.com/directions/v2:computeRoutes';
 
   // JSON payload for the POST request
