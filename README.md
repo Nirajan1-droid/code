@@ -1,10 +1,6 @@
 # Traffic Commute Assistant
 <div align="center">
-<<<<<<< HEAD
-    <img src="assets/icons/gallery.jpg" width="200" alt="Photo 0" style="display:inline-block; margin: 10px;">
-=======
     <img src="assets/icons/pho0.jpg" width="200" alt="Photo 0" style="display:inline-block; margin: 10px;">
->>>>>>> 30785f02c6008d5a7a0839ca3105b63a4a9ab286
     <img src="assets/icons/pho1.jpeg" width="200" alt="Photo 1" style="display:inline-block; margin: 10px;">
     <img src="assets/icons/pho2.jpeg" width="200" alt="Photo 2" style="display:inline-block; margin: 10px;">
     <img src="assets/icons/pho3.jpeg" width="200" alt="Photo 3" style="display:inline-block; margin: 10px;">
@@ -26,22 +22,12 @@ Our system reschedules your daily schedule based on our traffic analysis of your
 
 ## How we built it
 
-<<<<<<< HEAD
-We built it by incorporating technologies like Flutter for cross-platform mobile app,
-(Require Contribution)Pending : Python for data analytics.
-=======
 We built it by incorporating technologies like Flutter for cross-platform mobile app, Node JS for authentication, and Python for data analytics.
->>>>>>> 30785f02c6008d5a7a0839ca3105b63a4a9ab286
 
 ## Challenges we ran into
 
 Delivering a promising prototype in limited time was a significant challenge during this hackathon. Beyond this, API integration & Data analysis were stimulating as well.
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 30785f02c6008d5a7a0839ca3105b63a4a9ab286
 ## Accomplishments that we're proud of
 
 The pride factor is that we actually utilized our "own skills" to solve our "own problem" that we've practically faced. We are surprised how solving this traffic problem not only solves our problem but a large domain of people can benefit from it as well. We are happy that this hackathon provided us a platform where we were able to develop a system that assists and prevents us from getting trapped in hectic traffic congestion that we face on a daily basis.
@@ -71,7 +57,6 @@ Feel free to reach out to any of our team members for questions or discussions:
 - [Ayush Sharma](https://github.com/Ayushkkkkkkk)
 
 Let's collaborate to build a better solution for traffic congestion!
-<<<<<<< HEAD
 ## TILL NOW AND EXPECTED FEATURE UPDATES.
 1.Already computed and predicted  data through the route api are considered till now for displaying the analysis.
 The route api isn't perfect alone. so one feature we are seeking to imporve on:
@@ -84,8 +69,6 @@ Feature require: mapping the users offline gps coordinates, their intervals in r
 3.Ask [Giver Khadka](https://github.com/giver-kdk) for assistance in frontend part.
 4.Ask  [Ayush Sharma](https://github.com/Ayushkkkkkkk) for data analysis and Autocomplete feature (Place API).
 5. Task scheduling, Priority Sorting, Notification alerts feature are also not implemented fully.([For this feature understanding and contributon:[Nirajan Bhattarai](https://github.com/Nirajan1-droid)]) 
-=======
->>>>>>> 30785f02c6008d5a7a0839ca3105b63a4a9ab286
 
 ## License
 
