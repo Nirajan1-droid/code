@@ -19,7 +19,11 @@ class _CommutePage1State extends State<CommutePage1> {
   final _formKey = GlobalKey<FormState>(); // For form validation
   TextEditingController _fromController = TextEditingController();
   TextEditingController _toController = TextEditingController();
+<<<<<<< HEAD
   final String PLACES_API_KEY = "ROUTE_API_ENABLED_GOOGLE_KEY";
+=======
+  final String PLACES_API_KEY = "API_KEY_ROUTE_API_ENABLE_FROM_GOOGLE";
+>>>>>>> 30785f02c6008d5a7a0839ca3105b63a4a9ab286
   List<String> _fromPlaceList = [];
   List<String> _toPlaceList = [];
 
